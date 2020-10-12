@@ -1,0 +1,29 @@
+<ion-content>
+
+  <div class="box" style="height: 90%; width: 95%;" hidden>
+    <h2>Scan ATM</h2>
+    <ion-card class="container vh-100">
+      <div class="d-flex flex-column align-items-center">
+         <div class="p-1">
+            <video #video class="vid" autoplay></video>
+         </div>
+         <div class="pb-2">
+            
+         </div>
+         <div class="p-1">
+            <canvas #canvas class="vid"></canvas>
+         </div>
+      </div>
+   </ion-card>
+  </div>
+  <div class="box" style="height: 50%; width: 95%;" align="center">
+   <h2>Scan QR Code</h2>
+   <ion-card>
+
+
+    <zxing-scanner  (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+   </ion-card>
+
+</div> 
+
+</ion-content>

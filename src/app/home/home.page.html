@@ -5,19 +5,43 @@
  
   <ion-content >
 
-    <ion-router-outlet ></ion-router-outlet>
 
+    <ion-router-outlet ></ion-router-outlet>
+    <ion-tabs hidden>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="schedule" >
+          <ion-icon name="home" [routerLink]="['newsfeed']"></ion-icon>
+          <ion-label>Home</ion-label>
+
+        </ion-tab-button>
+    
+        <ion-tab-button tab="speakers" [routerLink]="['book-trip']">
+          <ion-icon name="car-sport-outline"></ion-icon>
+          <ion-label>Booking</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="map">
+          <ion-icon name="person"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="about" hidden>
+          <ion-icon name="information-circle"></ion-icon>
+          <ion-label>About</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
 
   <ion-tabs >
-   <ion-tab-bar slot="bottom" style="height: 70px;" color="secondary">
+   <ion-tab-bar slot="bottom" style="height: 70px;" class="new-background-color">
       <ion-segment scrollable value="home">
-         <ion-segment-button value="home" >
+         <ion-segment-button value="home" [routerLink]="['/home/newsfeed']">
            <ion-icon name="home"></ion-icon>
          </ion-segment-button>
-         <ion-segment-button value="heart"  [routerLink]="['book-trip']">
+         <ion-segment-button value="heart"  [routerLink]="['/home/book-trip']">
             <ion-icon name="car-sport-outline"></ion-icon>
          </ion-segment-button>
-         <ion-segment-button value="pin">
+         <ion-segment-button value="pin"  [routerLink]="['/home/profile']" >
            <ion-icon name="person"></ion-icon>
          </ion-segment-button>
          <ion-segment-button value="star" hidden>

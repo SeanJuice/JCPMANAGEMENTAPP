@@ -11,5 +11,8 @@ export class BookTripPage implements OnInit {
 
   ngOnInit() {
   }
-
+  onSubmit()
+  {
+    
+  }
 }

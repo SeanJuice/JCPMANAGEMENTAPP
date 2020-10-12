@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -14,18 +15,28 @@ export class HomePage implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private menu: MenuController
+    private menu: MenuController,
+    private router: Router
   ) {
 
   }
 
+  show = true;
 
 
   ngOnInit() {
 
+
   }
 
-
+  HideHome()
+  {
+    this.show= false
+  }
+  ShowHome()
+  {
+    this.show= true
+  }
 
   openFirst() {
     this.menu.enable(true, 'first');

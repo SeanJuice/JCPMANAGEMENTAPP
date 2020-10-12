@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -15,9 +16,19 @@ const routes: Routes = [
       {
         path: 'profile',
         loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
-      }
+      },
+      {
+        path: 'newsfeed',
+        loadChildren: () => import('./newsfeed/newsfeed.module').then( m => m.NewsfeedPageModule)
+      },
+      {
+        path: 'scanner',
+        loadChildren: () => import('./scanner/scanner.module').then( m => m.ScannerPageModule)
+      },
     ]
   },
+  
+
 
 ];
 
