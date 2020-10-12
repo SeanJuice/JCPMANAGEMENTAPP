@@ -1,0 +1,38 @@
+
+
+
+
+ 
+  <ion-content >
+
+    <ion-router-outlet ></ion-router-outlet>
+
+
+  <ion-tabs >
+   <ion-tab-bar slot="bottom" style="height: 70px;" color="secondary">
+      <ion-segment scrollable value="home">
+         <ion-segment-button value="home" >
+           <ion-icon name="home"></ion-icon>
+         </ion-segment-button>
+         <ion-segment-button value="heart"  [routerLink]="['book-trip']">
+            <ion-icon name="car-sport-outline"></ion-icon>
+         </ion-segment-button>
+         <ion-segment-button value="pin">
+           <ion-icon name="person"></ion-icon>
+         </ion-segment-button>
+         <ion-segment-button value="star" hidden>
+           <ion-icon name="star"></ion-icon>
+         </ion-segment-button>
+         <ion-segment-button value="call" hidden>
+           <ion-icon name="call"></ion-icon>
+         </ion-segment-button>
+         <ion-segment-button value="globe" hidden>
+           <ion-icon name="globe"></ion-icon>
+         </ion-segment-button>
+         <ion-segment-button value="basket" hidden>
+           <ion-icon name="basket"></ion-icon>
+         </ion-segment-button>
+       </ion-segment>
+   </ion-tab-bar>
+ </ion-tabs>
+</ion-content> 

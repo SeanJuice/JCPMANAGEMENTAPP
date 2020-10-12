@@ -1,0 +1,33 @@
+
+
+
+    <div class="mobile-wrapper" style="width:97%">
+        <div class="login-wrapper">
+
+            <div class="brand-logo">
+              <img src="https://i.ibb.co/ZS89Gth/Logo.jpg" alt="Avatar" style="width:100px">
+            </div>
+            <div class="form-wrapper">
+                <form  #form="ngForm" (submit)="onSubmit(form)" >
+                    <div class="input-group">
+                        <label for="email"><i class="fas fa-user"></i></label>
+                        <input type="email"  name="email" placeholder="Email" ngModel id="email">
+                    </div>
+                    <div class="input-group">
+                        <label for="password"><i class="fas fa-unlock-alt"></i></label>
+                        <input type="password"name="password" placeholder="Password" ngModel id="password">
+                    </div>
+                    <button [routerLink]="['/home']" type="submit">LOGIN</button>
+                </form>
+                <br/>
+                <button>GENERATE LOGIN DETAILS</button>
+                <div >forgot password ?</div>
+            </div>
+           
+
+        </div>
+
+
+    </div>
+
+

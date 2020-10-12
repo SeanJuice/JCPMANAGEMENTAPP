@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "goldendawn-d690a": {
+      "hosting": {
+        "app": [
+          "goldendawn-d690a"
+        ]
+      }
+    }
+  }
+}
