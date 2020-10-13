@@ -17,30 +17,35 @@ export class LoginPage implements OnInit {
   }
   onSubmit(form)
   {
-      console.log(form.value)
-      // this.AfAuth.signInWithEmailAndPassword(form.email,form.password).then(res=>{
-      //   const uid =res.user.uid;
-
-      //         this.firestore.collection("Users").snapshotChanges().subscribe(items=>{
-      //           items.forEach(a=>{
-      //             let item:any = a.payload.doc.data()
-      //             item.id = a.payload.doc.id;
-      //            if(item.id === uid && item.UserTypeID == "Admin")
-      //             {
-      //               localStorage.setItem('UmuntuId', uid);
-      //               this.checkVerified(res)
-      //              // this.router.navigate(['./administrator']) 
-      //             }
-      //             else if(item.id === uid && item.UserTypeID == "Student")
-      //             {
-      //               localStorage.setItem('UmuntuId', uid);
-      //               this.checkVerified(res)
-      //               //this.router.navigate(['./students']) 
-      //             }
-
-      //           })
-      //         })
-      // })
+      try{
+        this.AfAuth.signInWithEmailAndPassword(form.email,form.password).then(res=>{
+          const uid =res.user.uid;
+  
+                this.firestore.collection("Users").snapshotChanges().subscribe(items=>{
+                  items.forEach(a=>{
+                    let item:any = a.payload.doc.data()
+                    item.id = a.payload.doc.id;
+                   if(item.id === uid && item.UserTypeID == "Admin")
+                    {
+                      this.checkVerified(res)
+                       this.router.navigate(['home/scanner']) 
+                    }
+                    else if(item.id === uid && item.UserTypeID == "Student")
+                    {
+  
+                      this.checkVerified(res)
+                      this.router.navigate(['home/newsfeed']) 
+                    }
+  
+                  })
+                })
+        })
+      }
+      catch(e)
+      {
+        console.log(e)
+      }
+  
   }
   checkVerified(res)
   {

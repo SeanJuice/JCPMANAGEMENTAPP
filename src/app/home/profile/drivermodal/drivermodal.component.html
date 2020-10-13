@@ -1,0 +1,88 @@
+<div class="checkout">
+  <div class="checkout__delivery-address" *ngIf="Show == true">
+    <h3 class="checkout__subtitle">YOUR DRIVER DETAILS</h3>
+    <div class="form-group checkout__address-form-group">
+      <div class="form-group__label">
+        <label
+          class="checkout__address-form-label label label--required"
+          for="Name"
+          >Driver Name:
+        </label>
+        <label id="Name" style="color: #007b7c"> {{ Adriver.Name }} </label>
+      </div>
+    </div>
+    <div class="form-group checkout__address-form-group">
+      <div class="form-group__label">
+        <label
+          class="checkout__address-form-label label label--required"
+          for="exampleInputEmail1"
+          >Driver surname:
+        </label>
+        <label id="Name" style="color: #007b7c"> {{ Adriver.Surname }} </label>
+      </div>
+    </div>
+    <div class="form-group checkout__address-form-group">
+      <div class="form-group__label">
+        <label
+          class="checkout__address-form-label label label--required"
+          for="Location"
+          >Contact No:
+        </label>
+        <label id="Location" style="color: #007b7c">
+          {{ Adriver.contactNumber }}</label
+        >
+      </div>
+    </div>
+    <div class="form-group checkout__address-form-group">
+      <div class="form-group__label">
+        <label
+          class="checkout__address-form-label label label--required"
+          for="exampleInputEmail1"
+          >Email:
+        </label>
+        <label id="Name" style="color: #007b7c">
+          {{ Adriver.StudentNumber }} @tuks.co.za
+        </label>
+      </div>
+    </div>
+    <div class="form-group checkout__address-form-group">
+      <div class="form-group__label">
+        <label
+          class="checkout__address-form-label label label--required"
+          for="exampleInputEmail1"
+          >Student Number:
+        </label>
+        <label id="Name" style="color: #007b7c">{{
+          Adriver.StudentNumber
+        }}</label>
+      </div>
+    </div>
+    <div style="padding-left: 20%">
+      <button
+        class="checkout__total-button button button--primary"
+        style="background-color: #007b7c"
+        (click)="dismiss()"
+      >
+        Ok
+      </button>
+    </div>
+    <div class="form-group checkout__address-form-group">
+      <div class="form-group__label">
+        <label
+          class="checkout__address-form-label label label--required"
+          for="exampleInputEmail1"
+        ></label>
+      </div>
+    </div>
+  </div>
+  <div class="checkout__delivery-address" *ngIf="Show == false">
+    <p class="lead" style="color: red">No Driver Assigned yet</p>
+  </div>
+</div>
+<button
+class="checkout__total-button button button--primary"
+style="background-color: #007b7c"
+(click)="dismiss()"
+>
+Ok
+</button>

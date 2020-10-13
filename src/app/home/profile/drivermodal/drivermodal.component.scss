@@ -1,0 +1,787 @@
+///////THE FORM
+$light-green:  #e6f4de;
+$green:        #6ca950;
+$light-pink:   #ffd9d1;
+$pink:         #dd9498;
+$light-orange: #fcf4cd;
+$orange:       #f1b93b;
+$blaze-orange: #fb6a00;
+$red-orange:   #ff401a;
+$red:          #e22921;
+$blue-light:   #36a9e1;
+$blue:         #3723f7;
+$white:        #fff;
+$white-dim:    #f8f8f8;
+$silver:       #ececec;
+$grey-light:   #ddd;
+$grey:         #c6c6c6;
+$grey-dark:    #999;
+$grey-dim:     #767676;
+$grey-dim-dark: #f5f5f5;
+$off-black:    #3c3c3c;
+$black:        #007B7C;
+
+$add-to-basket:             $blaze-orange;
+$base-copy-color:           $off-black;
+$error:                     $red-orange;
+$grey-background:           $silver;
+$grey-background-light:     $white-dim;
+$grey-keyline:              $grey-light;
+$promotion:                 $blue-light;
+$sale:                      $red;
+$success:                   $blue;
+
+$disabled-colour:           #dddddd;
+
+$dark-grey:                 #696969;
+$error:                     #ff401a;
+$error-background:          #ffd9d1;
+$message:                   #3a8c1a;
+$message-background:        #e5f3df;
+$warning:                   #f1a328;
+$warning-background:        #faf3ce;
+$message-promotion:         #f0f7ff;
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+
+@mixin vendor-prefix($name, $argument) {
+    // Gonzales PE has a bug causing the style guide to not be generated
+    // if these styles are included in the guide, so ignore
+    //
+    // styleguide:ignore:start
+    -moz-#{$name}: #{$argument};
+    -ms-#{$name}: #{$argument};
+    -o-#{$name}: #{$argument};
+    -webkit-#{$name}: #{$argument};
+    #{$name}: #{$argument};
+    // styleguide:ignore:end
+}
+.checkout__address-form-label{
+  color: rgb(63, 63, 63);
+}
+
+
+.checkbox {
+    position: relative;
+    margin-bottom: 10px;
+    
+    &:first-child {
+        margin-top: 26px;
+    }
+    
+    &__input {
+        display: none;
+        position: absolute;
+        
+        &:checked {
+            outline: none;
+        }
+    }
+    
+    &__label {
+        display: inline-block;
+        position: relative;
+        padding: 0 0 0 28px;
+        vertical-align: middle;
+        line-height: 21px;
+            
+        &:before {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            border: 1px solid $grey;
+            background-color: $white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            content: '';
+        }
+        
+        &:after {
+            @include vendor-prefix(transform, scale(0, 0));
+            display: inline-block;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform .2s ease;
+            background-color: $black;
+            width: 16px;
+            height: 16px;
+            content: '';
+            border-radius: 50%;
+            
+        }
+        
+        .checkbox__input:checked + &:after {
+            @include vendor-prefix(transform, scale(1, 1));
+        }
+        
+        .checkbox__input:disabled + & {
+            color: $grey;
+        }
+    }
+    
+    &--error {
+        .checkbox__label:before {
+            border-color: $red-orange;
+        }
+    }
+}
+
+
+@mixin clearfix {
+
+    &:before,
+    &:after {
+        content: " "; /* 1 */
+        display: table; /* 2 */
+    }
+
+    &:after {
+        clear: both;
+    }
+
+}
+
+@mixin grid-wrapper {
+    @include clearfix;
+    margin: 0 auto;
+    max-width: 1200px;
+
+    @media (min-width: 1600px) {
+        max-width: 1400px;
+    }
+}
+
+$grid-gutter: 1.25vw;
+
+.alert {
+
+    .icon {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 12px 14px;
+        width: 1em;
+        height: 1em;
+        vertical-align: top;
+        color: $message;
+    }
+
+    &--locale-select {
+        padding: 0;
+    }
+
+}
+
+.alert__group {
+    position: relative;
+    transition: height .5s ease-out;
+    margin: 10px auto;
+    background-color: $message-background;
+    width: 100%;
+    color: $off-black;
+
+    &--warning {
+        background-color: $warning-background;
+
+        .alert__item {
+            border-color: rgba($warning, .3);
+        }
+
+        .icon {
+            color: $warning;
+        }
+
+        .alert__close {
+            color: $warning;
+        }
+
+    }
+
+    &--error {
+        background-color: $error-background;
+
+        .alert__item {
+            border-color: rgba($error, .3);
+        }
+
+        .icon {
+            color: $error;
+        }
+
+        .alert__close {
+            color: $error;
+        }
+
+    }
+
+    &--locale-select {
+        margin: 0 auto;
+        font-style: italic;
+    }
+  
+  &--delivery {
+    background: #ffff99;
+    margin: 25px 0;
+    width: auto;
+    
+    .alert__item{
+      border-top: 0;
+      padding: 4px 0;
+    }
+    
+  }
+
+}
+.alert--hide {
+    margin: 0;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.alert__list {
+    display: block;
+    margin: 0;
+    padding: 0 43px 0 49px;
+    width: 100%;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.alert__item {
+    display: block;
+    border-top: 1px solid rgba($message, .3);
+    padding: 13px 0;
+    width: 100%;
+}
+
+.alert__item:first-child {
+    border-top-width: 0;
+}
+
+.alert__close {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    outline: none;
+    border-width: 0;
+    background-color: transparent;
+    padding: 15px 20px;
+    color: $message;
+    font-weight: 800;
+}
+
+
+.input {
+    @include vendor-prefix(appearance, none);
+    transition: border .3s;
+    border: 1px solid $grey-light;
+    border-radius: 0;
+    background-color: $white-dim;
+    padding: 9px 10px;
+    width: 100%;
+    min-height: 40px;
+    vertical-align: middle;
+    line-height: normal;
+    font-weight: 400;
+
+    &:focus {
+        outline: none;
+        border-color: $black;
+    }
+
+    &--error {
+        border-color: $red-orange;
+
+        &:focus {
+            border-color: $red-orange;
+        }
+    }
+
+    &--inline {
+        padding-right: 60px;
+    }
+
+    &__inline-wrapper {
+        position: relative;
+    }
+
+    &__inline-control {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 9px 0;
+        border-left: 1px solid $grey-dark;
+        cursor: pointer;
+        padding: 0 10px;
+        width: 60px;
+        vertical-align: middle;
+        line-height: 21px;
+        color: $grey-dark;
+        font-weight: 400;
+    }
+
+}
+
+@mixin button {
+    display: inline-block;
+    transition: all .3s ease;
+    outline: none;
+    border-width: 1px;
+    border-style: solid;
+    padding: 13px 32px;
+    min-width: 260px;
+    min-height: 40px;
+    vertical-align: middle;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    line-height: 12px;
+    color: $white;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+@mixin button--primary {
+    border-color: $blaze-orange;
+    background: $blaze-orange;
+
+    &:hover,
+    &:focus {
+        border-color: $red-orange;
+        background: $red-orange;
+    }
+
+}
+
+
+@mixin button--secondary {
+    border-color: $grey-light;
+    background: $white-dim;
+    color: $off-black;
+    font-size: 12px;
+
+    &:hover,
+    &:focus {
+        background: $white;
+    }
+
+}
+
+@mixin button--secondary-grey {
+    background: $white-dim;
+
+    &:hover,
+    &:focus {
+        border-color: $black;
+        background: $black;
+        color: $white;
+    }
+
+}
+
+@mixin button--secondary-white {
+    background: $white;
+
+    &:hover,
+    &:focus {
+        border-color: $black;
+        background: $black;
+        color: $white;
+    }
+
+}
+
+@mixin button--secondary-black {
+    border-color: $black;
+    background: $black;
+    color: $white;
+
+    &:hover,
+    &:focus {
+        border-color: $black;
+        background: $white;
+        color: $black;
+    }
+
+}
+
+.button {
+    @include button;
+
+    &--primary {
+        @include button--primary;
+    }
+
+    &--secondary {
+        @include button--secondary;
+    }
+
+    &--secondary-grey {
+        @include button--secondary-grey;
+    }
+
+    &--secondary-white {
+        @include button--secondary-white;
+    }
+
+    &--secondary-black {
+        @include button--secondary-black;
+    }
+
+    &--disabled {
+        position: relative;
+        cursor: default;
+
+        &.button--primary:hover {
+            border-color: $blaze-orange;
+            background: $blaze-orange;
+        }
+
+        &.button--secondary:hover {
+            border-color: $grey-light;
+            background: $white-dim;
+            color: $grey;
+        }
+
+        &.button--secondary-grey:hover {
+            background: $white-dim;
+        }
+
+        &.button--secondary-white:hover {
+            background: $white;
+        }
+
+        &.button--secondary-black:hover {
+            border-color: $black;
+            background: $black;
+            color: $white;
+        }
+
+        &:after {
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            bottom: -1px;
+            left: -1px;
+            opacity: .5;
+            z-index: 1;
+            background: $white;
+            content: '';
+        }
+
+    }
+
+}
+
+
+.button--disabled.button--secondary {
+    color: $grey;
+}
+
+$b: black;
+$y: grey;
+
+@mixin ribbon( $ribbon-color:black, $size-left:.5em, $size-right:.5em) {
+  position:relative;
+  &:before,
+  &:after { content:""; position:absolute; }
+  &:before { border-top:$size-left solid $ribbon-color;
+    bottom:-12px;
+    border-left:$size-left solid transparent;
+    left:3px;
+    -ms-transform: rotate(-24deg); /* IE 9 */
+    -webkit-transform: rotate(-24deg); /* Chrome, Safari, Opera */
+    transform: rotate(-24deg);
+    z-index: -1;
+  }
+  &:after {
+    border-top:$size-right solid $ribbon-color;
+    bottom:-$size-right;
+    border-right:$size-right solid transparent;
+    right:0;
+  }
+}
+
+.step { display: inline-block; padding: 7px 12px; background:$black; color: white; position: absolute; top:0; left: -50px; }
+
+
+body{
+  margin: 20px;
+  font-family: 'Gibson', 'Helvetica', 'Arial', sans-serif;
+
+}
+.checkout {
+  border: 1px solid lightgrey;
+  padding: 35px;
+  background-color:white;
+}
+
+
+.checkout__step{ 
+  @include ribbon($y, 1em, 0); 
+  &--payment{
+    margin-top: 40px;
+  }
+}
+
+
+.checkout__title {
+  margin:0;
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  left: -42px;
+  font-weight: normal;
+}
+
+.checkout__subtitle {
+  color: grey;
+    font-weight: normal;
+  &--no-margin{
+    margin:0;
+    margin-top:50px;
+  }
+}
+
+.checkout__delivery-address {
+  border-bottom: 1px solid lightgrey;
+}
+
+.checkout__delivery-service {
+  padding-bottom: 30px;
+  border-bottom: 1px solid lightgrey;
+
+}
+
+.checkout__delivery-info {
+  margin: 0;
+  line-height: 21px;
+  font-size: 14px;
+  
+  &--highlight {
+    font-weight: bold;
+  }
+  
+}
+
+.checkout__delivery-link {
+  display: inline-block;
+  color: black;
+  margin: 20px 0 50px;
+  font-size: 14px;
+  
+  &--more{
+    margin: 0;
+  }
+  &--address-form {
+    margin-left: 125px;
+  }
+}
+
+.checkout__delivery-service {
+  margin-top: 45px;
+  font-size: 14px;
+}
+
+.checkout__delivery-time {
+  padding: 20px;
+  font-weight: normal;
+}
+
+.checkout__delivery-checkbox {
+  padding-bottom: 10px;
+}
+
+.checkout__delivery-input{
+  margin: 0;
+  margin-top: 10px;
+  margin-left: 30px;
+  width: auto;
+  display:block;
+  min-height: 20px;
+  font-size: 14px;
+}
+
+.checkout__delivery--promo {
+  margin-top: 40px;  
+}
+
+.checkout__delivery-more{
+  font-size: 14px;
+  font-weight: normal;
+  
+  &--light{
+    color: $grey-dark;
+    margin-left: 5px;
+  }
+  &--updates{
+    color: $grey-dark;
+    font-weight: normal;
+    margin-top: 5px;
+    display: inline-block;
+  }
+  &--choice{
+    display:block;
+    margin-top:5px;
+  }
+  &--billing{
+     color: $grey-dark;
+    display:block;
+    margin-bottom: 20px;
+  } 
+}
+
+.checkout__payment{
+  clear: both;
+  display: block;
+  overflow: auto;
+  border-bottom: 1px solid $grey-light;
+  margin-top: 20px;
+}
+.checkout__payment-options{
+    display: block;
+    overflow: auto;
+    list-style: none;
+    padding: 0;
+   
+}
+
+.checkout__payment-choice {
+    border: 1px solid lightgrey;
+    box-sizing: border-box;
+    padding: 40px 5px;
+    width: 49%;
+    margin-right: 1%;
+    text-align: center;
+    display: block;
+    float: left;
+    color: #696969;
+  &:last-child {
+    margin-right:0;
+    margin-left: 1%;
+  }
+}
+
+#mainView {
+	clear: both;
+	padding: 1em 0;
+  font-weight: normal;
+}
+.active {
+    background-color: $black;
+    color: $white;
+  border: 1px solid black;
+}
+.tab-1{
+   background: url('https://s9.postimg.org/k1vnmaqgv/b36a_GQV2_O.jpg') no-repeat center center;
+  background-size: contain;
+  text-indent: -9999px;
+}
+.checkout__total {
+  @include clearfix;
+}
+.checkout__total-title{
+  float: left;
+  &--price{
+  float: right;
+  }
+}
+.checkout__total-header{
+  @include clearfix;
+}
+.checkout__total-text{
+  float: left;
+  font-weight: normal;
+  font-size: 14px;
+}
+.checkout__total-button{
+  float: right;
+}
+.checkout__total-button2{
+    float: left;
+  }
+.checkout__billing-subtitle {
+  margin:5px 0 30px;
+  font-weight: normal;
+}
+
+.label--required {
+  font-size: 12px;
+  display:block;
+  padding: 10px 0 5px;
+}
+
+.checkout__paypal {
+  margin: 20px 0;
+}
+
+.checkout__address-form-label {
+  display: inline-block;
+  min-width: 120px;
+}
+
+.checkout__address-form-input {
+  width: 300px;
+}
+
+.checkout__address-form-group {
+  margin-bottom: 20px;
+  &:first-child {
+    margin-top: 30px;
+  }
+}
+
+///Driver download button
+////
+
+/* Hide original appearance */
+.choose-file {
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 0.1px;
+    z-index: -1;
+  }
+  
+  /* Style both input field and label */
+  .choose-file + .upload-file {
+    background-color: #007B7C;
+    box-sizing: border-box;
+    color: #fff;
+    display: block;
+    font-family: Sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 1rem 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  .choose-file:focus + .upload-file,
+  .choose-file + .upload-file:hover {
+    background-color: #007B7C;
+  }
+  
+  
+  label.upload-file::before {
+    content: "Choose file";
+  }
+  
+  /* This appears after a file is chosen. */
+  .choose-file:valid + .upload-file::before {
+    content: "1 file chosen";
+  }
+  

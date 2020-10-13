@@ -1,0 +1,98 @@
+<ion-content>
+
+  
+  <ion-card style="background-color: #008c8e;">
+  
+    <ion-card-header style="color: gold;">
+    Trip info
+    </ion-card-header>
+    <ion-card-content>
+      <div class="checkout" style="padding-bottom: 10%">
+        <h3 class="checkout__subtitle">TRIPS DETAILS</h3>
+        <div class="checkout__delivery-address">
+          <div class="form-group checkout__address-form-group">
+            <form [formGroup]="EditServe.form" (ngSubmit)="onSubmit()">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Date</span>
+                </div>
+                <input type="date" class="form-control" formControlName="Date" />
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Time</span>
+                </div>
+                <input type="time" class="form-control" formControlName="Time" />
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Location</span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="Location"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"
+                    >Project Name</span
+                  >
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="ProjectName"
+                  disabled
+                />
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"
+                    >Description</span
+                  >
+                </div>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  formControlName="Description"
+                >
+                </textarea>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Status</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="Status"
+                  disabled
+                />
+              </div>
+              
+              <ion-button
+                class="checkout__total-button button button--primary"
+              color="dark"
+                type="submit"
+              >
+                Save Changes
+              </ion-button>
+            </form>
+            <div></div>
+            <ion-button
+              class="checkout__total-button2 button button--primary"
+              color="danger"
+              (click)="dismiss()"
+            >
+              Cancel
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+
+
+  </ion-card>
+
+  <ion-footer> </ion-footer>
+</ion-content>

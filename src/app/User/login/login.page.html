@@ -8,16 +8,16 @@
               <img src="https://i.ibb.co/ZS89Gth/Logo.jpg" alt="Avatar" style="width:100px">
             </div>
             <div class="form-wrapper">
-                <form  #form="ngForm" (submit)="onSubmit(form)" >
+                <form  #form="ngForm" (submit)="onSubmit(form.value)" >
                     <div class="input-group">
                         <label for="email"><i class="fas fa-user"></i></label>
-                        <input type="email"  name="email" placeholder="Email" ngModel id="email">
+                        <input type="email"  name="email" placeholder="Email"  #email="ngModel" ngModel>
                     </div>
                     <div class="input-group">
                         <label for="password"><i class="fas fa-unlock-alt"></i></label>
-                        <input type="password"name="password" placeholder="Password" ngModel id="password">
+                        <input type="password"name="password" placeholder="Password"  #password="ngModel" ngModel >
                     </div>
-                    <button [routerLink]="['/home/newsfeed']" type="submit">LOGIN</button>
+                    <ion-button type="submit">LOGIN</ion-button>
                 </form>
                 <br/>
                 <button>GENERATE LOGIN DETAILS</button>

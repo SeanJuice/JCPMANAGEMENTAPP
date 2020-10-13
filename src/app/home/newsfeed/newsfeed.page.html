@@ -6,6 +6,28 @@
 </ion-header>
 <ion-content>
 
-<ion-content>
-
+  <div *ngFor="let post of Posts">
+    <ion-card style="background-color: #008c8e;">
+    <ion-card-title>
+      Newsfeed Post 
+    </ion-card-title>
+    
+    <ion-card-content>
+      <div style="width:170%">
+        <img  *ngIf="filetypeChecker(post.fileType) == false" src={{post.Url}} alt="Avatar" style="width:60%">
+        <video hide *ngIf="filetypeChecker(post.fileType)" width="60%" height="240" controls>
+          <source src={{post.Url}} type="video/mp4">
+        </video>
+      </div>
+   
+    </ion-card-content>
+ 
+    <ion-card-header>
+      <ion-card-subtitle>  {{post.Date | date}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content style="color: gold;">
+      {{post.Description}}
+    </ion-card-content>
+  </ion-card>
+  </div>
 </ion-content>
