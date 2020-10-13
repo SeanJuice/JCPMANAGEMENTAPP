@@ -13,7 +13,7 @@ import { EditmodalComponent } from './editmodal/editmodal.component';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  Studentid:any
+  Studentid=localStorage.getItem("UmuntuId")
   constructor( 
     private firestore: AngularFirestore,
        private ModalCtrl:ModalController,

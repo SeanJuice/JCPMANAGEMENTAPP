@@ -1,81 +1,291 @@
-
-<ion-header   >
+<ion-header  >
   <ion-toolbar class="new-background-color">
-     <ion-title>Book a Trip</ion-title>
+     <ion-title> Trips </ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
-  <div style="padding-top: 4%;">
-    <ion-card hidden>
-      <ion-item href="#" class="ion-activated">
-        <ion-icon name="wifi" slot="start"></ion-icon>
-        <ion-label>Card Link Item 1 activated</ion-label>
-      </ion-item>
-    
-      <ion-item href="#">
-        <ion-icon name="wine" slot="start"></ion-icon>
-        <ion-label>Card Link Item 2</ion-label>
-      </ion-item>
-    
-      <ion-item class="ion-activated">
-        <ion-icon name="warning" slot="start"></ion-icon>
-        <ion-label>Card Button Item 1 activated</ion-label>
-      </ion-item>
-    
-      <ion-item>
-        <ion-icon name="walk" slot="start"></ion-icon>
-        <ion-label>Card Button Item 2</ion-label>
-      </ion-item>
-    </ion-card>
+  <ion-card style="background-color: #008c8e;">
+    <ion-card-header style="color: gold;">
+      Book Trips Here <img src="https://img.icons8.com/plasticine/100/000000/map-marker.png" style="width: 10%;height: 10%;"/>
+    </ion-card-header>
 
-    <ion-card>
-      <ion-card-header>
-        <img src="https://img.icons8.com/plasticine/100/000000/car.png"/>
-        <ion-card-subtitle>Book a Trip Here</ion-card-subtitle>
-       
-      </ion-card-header>
-    
-      <ion-card-content>
-        <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
-          <ion-input type="hidden" name="VendorID"  class="form-group"> </ion-input>
-          <div class="form-group">
-              <ion-item>
-                  <ion-label position="floating">Show Name</ion-label>
-                  <ion-textarea></ion-textarea>
+    <ion-card-content>
+  <ion-item-group>
 
-                  
-              </ion-item>
-          </div>
-          <div class="form-group">
-              <ion-item>
-                  <ion-label position="floating">Country</ion-label>
-                  <ion-input name="VendorType"  class="form-control" required></ion-input>
-                  
-              </ion-item>
-          </div>
-          <div class="form-group col-md-6">
-              <ion-item>
-                  <ion-label position="floating">
-                      Rating
-                  </ion-label>
-                  <ion-input name="VendorLocation"type="number"  class="form-control" required></ion-input>
-                 
-              </ion-item>
-          </div>
-          <div class="form-group">
+  <div align="center" style="padding-top: 10%">
+    <div
+      class="checkout"
+      style="width: 50%; padding-bottom: 5%"
+      *ngIf="this.BookedButton==false"
+    >
+      <form
+        [formGroup]="BookServ.form"
+        (ngSubmit)="BookTrip()"
+        style="align-items: center">
       
-              <ion-item>
-                  <ion-button type="submit"   color="danger"class="btn btn-lg btn-block">Add The Show 
-                  </ion-button>
-              </ion-item>
+        <div class="checkout__address-form">
+          <div class="form-group">
+            <ion-item-divider style="background-color: #008c8e;">
+            <ion-label
+              class="checkout__address-form-label label label--required"
+              for="GN"
+              >Group number *
+            </ion-label>
+          </ion-item-divider>
+
+            <ion-item>
+            <ion-input
+              type="email"
+              class="checkout__address-form-input input"
+              id="GN"
+              value="{{this.GroupNumber}}"
+              disabled
+            >
+          </ion-input>
+        </ion-item>
           </div>
-      
+
+          
+
+          <div class="checkout__address-form">
+            <ion-item-divider style="background-color: #008c8e;">
+            <ion-label
+              class="checkout__address-form-label label label--required"
+              for="TL"
+              >Trip location *
+            </ion-label>
+            </ion-item-divider>
+
+            <ion-item>
+            <ion-input
+              type="text"
+              class="checkout__address-form-input input"
+              id="TL"
+              placeholder="Trip Location"
+              formControlName="Location"
+              (keydown.enter)="$event.preventDefault()"
+              placeholder="Search Location"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="off"
+              type="text"
+              #search>
+            </ion-input>
+          </ion-item>
+          </div>
+
+          <div class="checkout__address-form">
+            <ion-item-divider style="background-color: #008c8e;">
+            <ion-label
+              class="checkout__address-form-label label label--required"
+              for="TD"
+              >Trip Date*
+            </ion-label>
+            </ion-item-divider>
+
+            <ion-item>
+            <ion-input
+              type="date"
+              class="checkout__address-form-input input"
+              id="TD"
+              placeholder="Trip Date"
+              formControlName="Date">
+            </ion-input>
+          </ion-item>
+
+            <div style="width: 60%; padding-left: 10%">
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.Date.touched && f.Date.invalid"
+              >
+                <sup>*</sup>Please provide Date
+              </div>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.Date.errors?.pattern"
+              >
+                <sup>*</sup>Please enter correct Date
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout__address-form">
+            <ion-item-divider style="background-color: #008c8e;">
+            <label
+              class="checkout__address-form-label label label--required"
+              for="TT"
+              >Trip Start Time*</label>
+            </ion-item-divider>
+
+            <ion-item>
+            <ion-input
+              type="time"
+              class="checkout__address-form-input input"
+              id="TT"
+              placeholder="Trip Time"
+              formControlName="StartTime">
+            </ion-input>
+          </ion-item>
+
+            <div style="width: 60%; padding-left: 10%">
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.StartTime.touched && f.StartTime.invalid"
+              >
+                <sup>*</sup>Please provide Start Time
+              </div>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.StartTime.errors?.pattern"
+              >
+                <sup>*</sup> Time is required
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout__address-form">
+            <ion-item-divider style="background-color: #008c8e;">
+            <ion-label
+              class="checkout__address-form-label label label--required"
+              for="TT"
+              >Trip End Time*</ion-label>
+              </ion-item-divider>
+
+            <ion-item>
+            <ion-input
+              type="time"
+              class="checkout__address-form-input input"
+              id="TT"
+              placeholder="Trip Time"
+              formControlName="EndTime">
+            </ion-input>
+          </ion-item>
+
+            <div style="width: 60%; padding-left: 10%">
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.EndTime.touched && f.EndTime.invalid"
+              >
+                <sup>*</sup>Please provide End Time
+              </div>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.EndTime.errors?.pattern"
+              >
+                <sup>*</sup> Time is required
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout__address-form">
+            <ion-item-divider style="background-color: #008c8e;">
+            <ion-label
+              class="checkout__address-form-label label label--required"
+              for="TT"
+              >Project Name*</ion-label>
+            </ion-item-divider>
+
+            <ion-item>
+            <ion-input
+              type="text"
+              class="checkout__address-form-input input"
+              id="TT"
+              placeholder="{{this.ProjectName}}"
+              formControlName="ProjectName"
+              value="{{this.ProjectName}}"
+              disabled>
+            </ion-input>
+          </ion-item>
+
+            <div style="width: 60%; padding-left: 10%">
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.ProjectName.touched && f.ProjectName.invalid"
+              >
+                <sup>*</sup>Please provide ProjectName
+              </div>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.ProjectName.errors?.pattern"
+              >
+                <sup>*</sup> ProjectName is required
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout__address-form">
+            <ion-item-divider style="background-color: #008c8e;">
+            <label
+              class="checkout__address-form-label label label--required"
+              for="TT"
+              >Description*</label>
+            </ion-item-divider>
+
+            <ion-item>
+            <ion-textarea
+              class="checkout__address-form-input input"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              formControlName="Description">
+          </ion-textarea>
+        </ion-item>
+
+            <div style="width: 60%; padding-left: 10%">
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.Description.touched && f.Description.invalid"
+              >
+                <sup>*</sup>Please provide Time
+              </div>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.Description.errors?.pattern"
+              >
+                <sup>*</sup> Time is required
+              </div>
+            </div>
+          </div>
+
+          <ion-button
+            class="checkout__total-button button button--primary"
+            style="background-color: #007b7c"
+            *ngIf="ShowButton"
+            type="submit"
+            color="light"
+          >
+            BOOK
+          </ion-button>
+
+        </div>
       </form>
-      </ion-card-content>
-    </ion-card>
+    </div>
+    <div
+      class="checkout"
+      style="width: 50%; padding-bottom: 5%; color: #007b7c"
+      *ngIf="this.BookedButton"
+    >
+      <h1 class="display-4" v>Trip already booked A trip check your profile</h1>
+      <ion-button
+        class="checkout__total-button button button--primary"
+        style="background-color: #007b7c"
+        routerLink="../../student-project-tripinfo"
+      >
+        BOOKED TRIP INFO
+      </ion-button>
+    </div>
   </div>
-
+      </ion-item-group>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
-
-  
-

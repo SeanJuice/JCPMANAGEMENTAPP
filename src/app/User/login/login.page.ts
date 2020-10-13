@@ -28,12 +28,14 @@ export class LoginPage implements OnInit {
                    if(item.id === uid && item.UserTypeID == "Admin")
                     {
                       this.checkVerified(res)
+                      localStorage.setItem("UmuntuId",uid);
                        this.router.navigate(['home/scanner']) 
                     }
                     else if(item.id === uid && item.UserTypeID == "Student")
                     {
   
                       this.checkVerified(res)
+                      localStorage.setItem("UmuntuId",uid);
                       this.router.navigate(['home/newsfeed']) 
                     }
   
