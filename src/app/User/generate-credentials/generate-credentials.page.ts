@@ -11,5 +11,9 @@ export class GenerateCredentialsPage implements OnInit {
 
   ngOnInit() {
   }
+  onSubmit()
+  {
+    
+  }
 
 }

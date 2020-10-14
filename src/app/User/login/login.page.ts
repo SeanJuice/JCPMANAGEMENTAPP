@@ -29,6 +29,7 @@ export class LoginPage implements OnInit {
                     {
                       this.checkVerified(res)
                       localStorage.setItem("UmuntuId",uid);
+                      localStorage.setItem("Admin","isAdmin");
                        this.router.navigate(['home/scanner']) 
                     }
                     else if(item.id === uid && item.UserTypeID == "Student")
@@ -36,6 +37,7 @@ export class LoginPage implements OnInit {
   
                       this.checkVerified(res)
                       localStorage.setItem("UmuntuId",uid);
+                      localStorage.setItem("Admin","isStudent");
                       this.router.navigate(['home/newsfeed']) 
                     }
   

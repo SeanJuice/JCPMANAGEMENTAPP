@@ -22,10 +22,18 @@ export class HomePage implements OnInit {
   }
 
   show = true;
-
+  isAdmin = false;
+  isStudent = false;
 
   ngOnInit() {
-
+    
+    if(localStorage.getItem("Admin")=='isAdmin')
+    {
+      this.isAdmin = true;
+    }
+    else if(localStorage.getItem("Admin")=='isStudent'){
+      this.isStudent=true;
+    }
 
   }
 

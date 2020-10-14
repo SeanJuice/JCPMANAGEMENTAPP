@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-newsfeed',
@@ -9,7 +10,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class NewsfeedPage implements OnInit {
 
  
-  constructor( private firestore: AngularFirestore) { }
+  constructor( private firestore: AngularFirestore, public logoutService: AppComponent) { }
   Posts =[]
   ngOnInit() {
     this.firestore.collection("Posts").snapshotChanges().subscribe(items=>{

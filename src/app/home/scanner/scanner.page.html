@@ -2,7 +2,7 @@
    <ion-toolbar class="new-background-color">
       <ion-title> Sanner </ion-title>
       <ion-buttons slot="primary">
-       <ion-button color="warning" fill="outline">
+       <ion-button color="warning" fill="outline" (click)="logoutService.logout()">
          Log Out
          <ion-icon slot="end" name="exit-outline"></ion-icon>
        </ion-button>
@@ -28,11 +28,27 @@
    </ion-card>
   </div>
   <div class="box" style="height: 60%; width: 95%;" align="center" class="new-background-color">
-   <h2>Scan QR Code</h2>
+   <h2>Scan Tool QR Code</h2>
    <ion-card>
 
 
     <zxing-scanner  (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+    <section class="results" *ngIf="qrResultString">
+      <div>
+        <small>Result</small>
+        <strong>Successfully captured</strong>
+      </div>
+      <button mat-icon-button (click)="clearResult()">&times;</button>
+    </section>
+
+    
+          <button mat-button color="accent"  style="background-color:#007b7c;" (click)="ScanIn(qrResultString)" *ngIf="qrResultString" >
+            <strong>SCAN IN TOOL</strong>
+          </button>
+         
+          <button mat-button color="primary" (click)="ScanOut(qrResultString)" *ngIf="qrResultString" >
+            <strong>SCAN OUT TOOL</strong>
+          </button>
    </ion-card>
    <ion-spinner name="crescent"></ion-spinner>
    <ion-spinner name="crescent"></ion-spinner>

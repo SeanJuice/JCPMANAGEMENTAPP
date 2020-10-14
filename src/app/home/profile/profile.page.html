@@ -2,7 +2,7 @@
   <ion-toolbar  class="new-background-color">
      <ion-title >Profile</ion-title>
      <ion-buttons slot="primary">
-      <ion-button color="warning" fill="outline">
+      <ion-button color="warning" fill="outline"  (click)="logoutService.logout()">
         Log Out
         <ion-icon slot="end" name="exit-outline"></ion-icon>
       </ion-button>
