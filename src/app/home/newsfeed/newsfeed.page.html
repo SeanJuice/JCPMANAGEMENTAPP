@@ -2,13 +2,20 @@
 <ion-header  >
   <ion-toolbar class="new-background-color">
      <ion-title>Newsfeed</ion-title>
+     <ion-buttons slot="primary">
+      <ion-button color="warning" fill="outline">
+        Log Out
+        <ion-icon slot="end" name="exit-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
 
   <div *ngFor="let post of Posts">
     <ion-card style="background-color: #008c8e;">
-    <ion-card-title>
+    <ion-card-title style="font-size: x-large;" color="warning">
+      <img src="https://img.icons8.com/plasticine/100/000000/news.png" width="15%" height="15%"/>
       Newsfeed Post 
     </ion-card-title>
     
@@ -26,7 +33,10 @@
       <ion-card-subtitle>  {{post.Date | date}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content style="color: gold;">
-      {{post.Description}}
+     
+      <div class="alert alert-warning" role="alert">
+        {{post.Description}}
+      </div>
     </ion-card-content>
   </ion-card>
   </div>

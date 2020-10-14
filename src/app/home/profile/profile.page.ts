@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController, ModalController } from '@ionic/angular';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
+
 import { Studentt } from 'src/app/Shared/student.model';
 import { Trip } from 'src/app/Shared/Trip.model';
 import { DrivermodalComponent } from './drivermodal/drivermodal.component';
 import { EditmodalComponent } from './editmodal/editmodal.component';
+import { ProfileService } from './profile.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -14,10 +14,12 @@ import { EditmodalComponent } from './editmodal/editmodal.component';
 })
 export class ProfilePage implements OnInit {
   Studentid=localStorage.getItem("UmuntuId")
+  progressPercent = 0 
   constructor( 
     private firestore: AngularFirestore,
        private ModalCtrl:ModalController,
-       private alertcontroler:AlertController
+       private alertcontroler:AlertController,
+       public EditServe:ProfileService
 ) { 
 
 
@@ -51,13 +53,17 @@ showMessage = true
       this.Atrip.StartTime=''
       this.Atrip.EndTime=''
       this.Atrip.DriverID=''
+      this.Atrip.id=''
     }
 
 
    this.firestore.doc(`students2/${this.Studentid}`).snapshotChanges().subscribe(stud=> {
      let st: any = stud.payload.data()
      this.GroupNumber = st.GroupNo
-     console.log(st)
+     console.log('here hre',this.GroupNumber)
+     this.progressPercent = (st.HoursWorked/40)
+    
+     console.log(this.progressPercent)
              //get the project
                this.firestore.collection("Projects",res=>res.where('ChosenByGroup','==',Number(this.GroupNumber))).snapshotChanges().subscribe(items => {
                  items.forEach(a => {
@@ -66,17 +72,20 @@ showMessage = true
                    st.ProjectName =  itemm.Name
                  })
                })
+               this.firestore.collection("Trips",res=>res.where('GroupNo','==',Number(st.GroupNo))).snapshotChanges().subscribe(items => {
+                items.forEach(a => {
+                  this.showMessage =false
+                  let itemm: any = a.payload.doc.data()
+                  itemm.id = a.payload.doc.id;
+                  this.Atrip = itemm;
+                   console.log(this.Atrip)
+                  this.Atrip.DriverID = itemm.DriverID;
+                })
+              })
    })
 
-   this.firestore.collection("Trips",res=>res.where('GroupNo','==',Number(this.GroupNumber))).snapshotChanges().subscribe(items => {
-     items.forEach(a => {
-       let itemm: any = a.payload.doc.data()
-       itemm.id = a.payload.doc.id;
-       this.Atrip = itemm;
+  
 
-       this.Atrip.DriverID = itemm.DriverID;
-     })
-   })
 
   }
   getStudent()
@@ -108,13 +117,13 @@ showMessage = true
       component:EditmodalComponent,
       cssClass:"Profile",
       componentProps:{
-        DriverID: this.id
+        tripID: Driverid
       }
     });
     await modal.present()
   }
   //confirm remove
-  async  RomoveBookConfirm() {
+  async  RemoveBookConfirm(id) {
     const alert = await this.alertcontroler.create({
       cssClass: 'alertCustomCss',
       message:"Are you sure you want unbook the trip?",
@@ -129,7 +138,7 @@ showMessage = true
         }, {
           text: 'Yes',
           handler: () => {
-           /// this.EditServe.Delete(this.id)
+           this.EditServe.Delete(id)
           }
         }
       ]

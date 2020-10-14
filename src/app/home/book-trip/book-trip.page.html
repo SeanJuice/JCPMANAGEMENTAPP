@@ -1,13 +1,23 @@
 <ion-header  >
   <ion-toolbar class="new-background-color">
      <ion-title> Trips </ion-title>
+     <ion-buttons slot="primary">
+      <ion-button color="warning" fill="outline">
+        Log Out
+        <ion-icon slot="end" name="exit-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card style="background-color: #008c8e;">
     <ion-card-header style="color: gold;">
-      Book Trips Here <img src="https://img.icons8.com/plasticine/100/000000/map-marker.png" style="width: 10%;height: 10%;"/>
+     <ion-text style="font-size: x-large;">
+      <img src="https://img.icons8.com/plasticine/100/000000/map-marker.png" width="30%" height="30%"/>
+      Book Trips Here
+     </ion-text> 
+    
     </ion-card-header>
 
     <ion-card-content>
@@ -28,8 +38,7 @@
           <div class="form-group">
             <ion-item-divider style="background-color: #008c8e;">
             <ion-label
-              class="checkout__address-form-label label label--required"
-              for="GN"
+              color="warning"
               >Group number *
             </ion-label>
           </ion-item-divider>
@@ -37,8 +46,7 @@
             <ion-item>
             <ion-input
               type="email"
-              class="checkout__address-form-input input"
-              id="GN"
+              color="warning"
               value="{{this.GroupNumber}}"
               disabled
             >
@@ -51,8 +59,7 @@
           <div class="checkout__address-form">
             <ion-item-divider style="background-color: #008c8e;">
             <ion-label
-              class="checkout__address-form-label label label--required"
-              for="TL"
+            color="warning"
               >Trip location *
             </ion-label>
             </ion-item-divider>
@@ -78,8 +85,7 @@
           <div class="checkout__address-form">
             <ion-item-divider style="background-color: #008c8e;">
             <ion-label
-              class="checkout__address-form-label label label--required"
-              for="TD"
+            color="warning"
               >Trip Date*
             </ion-label>
             </ion-item-divider>
@@ -114,17 +120,15 @@
 
           <div class="checkout__address-form">
             <ion-item-divider style="background-color: #008c8e;">
-            <label
-              class="checkout__address-form-label label label--required"
-              for="TT"
-              >Trip Start Time*</label>
+            <ion-label
+            color="warning"
+              >Trip Start Time*</ion-label>
             </ion-item-divider>
 
             <ion-item>
             <ion-input
               type="time"
-              class="checkout__address-form-input input"
-              id="TT"
+              color="warning"
               placeholder="Trip Time"
               formControlName="StartTime">
             </ion-input>
@@ -151,16 +155,14 @@
           <div class="checkout__address-form">
             <ion-item-divider style="background-color: #008c8e;">
             <ion-label
-              class="checkout__address-form-label label label--required"
-              for="TT"
+            color="warning"
               >Trip End Time*</ion-label>
               </ion-item-divider>
 
             <ion-item>
             <ion-input
               type="time"
-              class="checkout__address-form-input input"
-              id="TT"
+              color="warning"
               placeholder="Trip Time"
               formControlName="EndTime">
             </ion-input>
@@ -187,16 +189,14 @@
           <div class="checkout__address-form">
             <ion-item-divider style="background-color: #008c8e;">
             <ion-label
-              class="checkout__address-form-label label label--required"
-              for="TT"
+            color="warning"
               >Project Name*</ion-label>
             </ion-item-divider>
 
             <ion-item>
             <ion-input
               type="text"
-              class="checkout__address-form-input input"
-              id="TT"
+              color="warning"
               placeholder="{{this.ProjectName}}"
               formControlName="ProjectName"
               value="{{this.ProjectName}}"
@@ -224,10 +224,9 @@
 
           <div class="checkout__address-form">
             <ion-item-divider style="background-color: #008c8e;">
-            <label
-              class="checkout__address-form-label label label--required"
-              for="TT"
-              >Description*</label>
+            <ion-label
+            color="warning"
+              >Description*</ion-label>
             </ion-item-divider>
 
             <ion-item>
@@ -273,9 +272,8 @@
     <div
       class="checkout"
       style="width: 50%; padding-bottom: 5%; color: #007b7c"
-      *ngIf="this.BookedButton"
-    >
-      <h1 class="display-4" v>Trip already booked A trip check your profile</h1>
+      *ngIf="this.BookedButton">
+      <h1 class="display-4" style="color:red">Trip already booked A trip check your profile</h1>
       <ion-button
         class="checkout__total-button button button--primary"
         style="background-color: #007b7c"

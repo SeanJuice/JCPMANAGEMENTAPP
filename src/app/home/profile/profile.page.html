@@ -1,32 +1,42 @@
 <ion-header  >
   <ion-toolbar  class="new-background-color">
-     <ion-title>Profile</ion-title>
+     <ion-title >Profile</ion-title>
+     <ion-buttons slot="primary">
+      <ion-button color="warning" fill="outline">
+        Log Out
+        <ion-icon slot="end" name="exit-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
 
 <ion-content>
   <ion-card style="background-color: #008c8e;">
-    <ion-card-header style="color: gold;">
-      Student Info
+    <ion-card-header style="color: gold;font-size: x-large;" >
+     <img src="https://img.icons8.com/plasticine/100/000000/student-male.png" width="30%" height="30%"/>   Student Info
     </ion-card-header>
     <ion-card-content>
 
       <ion-item-group >
+
+       
         <ion-item-divider style="background-color: #008c8e;">
-          <ion-label> Hours Worked: </ion-label>
+         
+          <ion-label color="warning"> Hours Worked: </ion-label>
         </ion-item-divider>
         <ion-item>
           <ion-label>{{Student.HoursWorked}}</ion-label>
         </ion-item>
+        <ion-progress-bar value={{progressPercent}}></ion-progress-bar>
         <ion-item-divider  style="background-color: #008c8e;">
-          <ion-label>Group Number:</ion-label>
+          <ion-label  color="warning">Group Number:</ion-label>
         </ion-item-divider>
         <ion-item>
           <ion-label>{{Student.GroupNo}}</ion-label>
         </ion-item>
         <ion-item-divider  style="background-color: #008c8e;">
-          <ion-label> Email Address: </ion-label>
+          <ion-label  color="warning"> Email Address: </ion-label>
         </ion-item-divider>
         <ion-item>
           <ion-label>{{Student.Email}}</ion-label>
@@ -42,40 +52,40 @@
     Trip info
     </ion-card-header>
     <ion-card-content>
-      <div *ngIf="Atrip==null">
-        <p class="lead">No Trip Booked!</p>
+      <div *ngIf="this.showMessage">
+        <ion-text color="danger" style="font-size: medium;" class="lead">No Trip Booked!</ion-text>
       </div>
     
-      <div  *ngIf="Atrip!=null" >
-        <ion-item-group >
+      <div  *ngIf="Atrip.StartTime!='' " >
+        <ion-item-group *ngIf='this.showMessage==false' >
             <ion-item-divider style="background-color: #008c8e;">
-              <ion-label> Trip Date: </ion-label>
+              <ion-label  color="warning"> Trip Date: </ion-label>
             </ion-item-divider>
             <ion-item>
               <ion-label>{{Atrip.Date}}</ion-label>
             </ion-item>
             <ion-item-divider  style="background-color: #008c8e;">
-              <ion-label>Trip Location:</ion-label>
+              <ion-label  color="warning">Trip Location:</ion-label>
             </ion-item-divider>
             <ion-item>
               <ion-label>{{Atrip.Location}}</ion-label>
             </ion-item>
             <ion-item-divider  style="background-color: #008c8e;">
-              <ion-label> Trip Time: </ion-label>
+              <ion-label  color="warning"> Trip Time: </ion-label>
             </ion-item-divider>
             <ion-item>
               <ion-label>{{Atrip.StartTime}} to {{Atrip.EndTime}}</ion-label>
             </ion-item>
             <ion-item-divider  style="background-color: #008c8e;">
-              <ion-label>  Project Name: </ion-label>
+              <ion-label  color="warning">  Project Name: </ion-label>
             </ion-item-divider>
             <ion-item>
               <ion-label>{{Atrip.ProjectName}}</ion-label>
             </ion-item>
             
-            <ion-button color="dark"   (click)="open(Atrip.DriverID)">View Assigned Driver</ion-button>
-            <ion-button color="light" (click)="openEdit(Atrip.DriverID)">Update</ion-button>
-            <ion-button color="danger" (click)="RomoveBookConfirm()">Cancel</ion-button>
+            <ion-button color="dark"   (click)="open(Atrip.id)">View Assigned Driver</ion-button>
+            <ion-button color="light" (click)="openEdit(Atrip.id)">Update</ion-button>
+            <ion-button color="danger" (click)="RemoveBookConfirm(Atrip.id)">Cancel</ion-button>
         </ion-item-group>
       </div>
     </ion-card-content>

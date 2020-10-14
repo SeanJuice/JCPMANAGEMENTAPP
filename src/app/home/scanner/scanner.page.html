@@ -1,6 +1,17 @@
+<ion-header  >
+   <ion-toolbar class="new-background-color">
+      <ion-title> Sanner </ion-title>
+      <ion-buttons slot="primary">
+       <ion-button color="warning" fill="outline">
+         Log Out
+         <ion-icon slot="end" name="exit-outline"></ion-icon>
+       </ion-button>
+     </ion-buttons>
+   </ion-toolbar>
+ </ion-header>
 <ion-content>
 
-  <div class="box" style="height: 90%; width: 95%;" hidden>
+  <div class="box" style="height: 100%; width: 95%;" hidden>
     <h2>Scan ATM</h2>
     <ion-card class="container vh-100">
       <div class="d-flex flex-column align-items-center">
@@ -16,14 +27,18 @@
       </div>
    </ion-card>
   </div>
-  <div class="box" style="height: 50%; width: 95%;" align="center">
+  <div class="box" style="height: 60%; width: 95%;" align="center" class="new-background-color">
    <h2>Scan QR Code</h2>
    <ion-card>
 
 
     <zxing-scanner  (scanSuccess)="onCodeResult($event)"></zxing-scanner>
    </ion-card>
-
+   <ion-spinner name="crescent"></ion-spinner>
+   <ion-spinner name="crescent"></ion-spinner>
+   <ion-spinner name="crescent"></ion-spinner>
+   <ion-spinner name="crescent"></ion-spinner>
+   <ion-text color="warning">Waiting for code...</ion-text>
 </div> 
 
 </ion-content>

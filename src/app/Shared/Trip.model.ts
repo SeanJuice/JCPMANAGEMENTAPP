@@ -7,5 +7,6 @@ export class Trip{
     Status: string;
     DriverID: string;
     ProjectName:string;
+    id:string
   
 }
