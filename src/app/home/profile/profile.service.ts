@@ -10,7 +10,7 @@ export class ProfileService {
 
 
   constructor(
-    public fb: FormBuilder,
+    public fb: FormBuilder, private firestore:AngularFirestore
     ) { }
   NamePattern = "^([A-z0-9À-ž ]){2,}$";
   NumbePattern = "^((\\+91-?)|0)?[0-9]{10}$"; 
@@ -23,26 +23,27 @@ export class ProfileService {
     Location: ['',[Validators.required]],
     ProjectName:['',[Validators.required,Validators.pattern(this.NamePattern)]],
     Status:  ['',[Validators.required,Validators.pattern(this.NamePattern)]],
-    Time: ['',[Validators.required,Validators.pattern(this.NumbePattern)]],
+    StartTime: ['',[Validators.required,Validators.pattern(this.NumbePattern)]],
+    EndTime: ['',[Validators.required,Validators.pattern(this.NumbePattern)]],
     GroupNo:['',[Validators.required]],
   })
 
 
    //Delete the record 
    Delete(id) {
-    // this.firestore.doc(`Trips/${id}`).delete().then(res=>{
-    //   let id= localStorage.getItem("UmuntuId")
-    //   let action=`Deleted trip`
-    // })
+    this.firestore.doc(`Trips/${id}`).delete().then(res=>{
+      let id= localStorage.getItem("UmuntuId")
+      let action=`Deleted trip`
+    })
    
   }
   //Updating the admin
   update(data,id){
     
-    // this.firestore.doc(`Trips/${id}`).update(data).then(res=>{
-    //   let id= localStorage.getItem("UmuntuId")
-    //   let action=` Updated trip details  `
-    //   })
+    this.firestore.doc(`Trips/${id}`).update(data).then(res=>{
+      let id= localStorage.getItem("UmuntuId")
+      let action=` Updated trip details  `
+      })
     
   }
 }

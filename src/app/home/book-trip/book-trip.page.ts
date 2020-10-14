@@ -53,16 +53,17 @@ export class BookTripPage implements OnInit {
                     this.ProjectName =  itemm.Name
                   })
                 })
+                this.firestore.collection("Trips",res=>res.where('GroupNo','==',Number(st.GroupNo))).snapshotChanges().subscribe(items => {
+                  items.forEach(a => {
+                    let itemm: any = a.payload.doc.data()
+                    itemm.id = a.payload.doc.id;
+                    this.ProjectName =  itemm.Name
+                    this.BookedButton=true
+                  })
+                })
     })
 
-    this.firestore.collection("Trips",res=>res.where('GroupNo','==',Number(this.GroupNumber))).snapshotChanges().subscribe(items => {
-      items.forEach(a => {
-        let itemm: any = a.payload.doc.data()
-        itemm.id = a.payload.doc.id;
-        this.ProjectName =  itemm.Name
-        this.BookedButton=true
-      })
-    })
+
   }
 
   Show()
@@ -106,7 +107,7 @@ export class BookTripPage implements OnInit {
                 data.StartTime =  start
                 data.EndTime =  end;
                 console.log(id," ",data," ",this.GroupNumber)
-              //this.BookServ.BookTrip(id,data,this.GroupNumber);
+              this.BookServ.BookTrip(id,data,this.GroupNumber);
               this.BookServ.form.reset();
               this.SuccesfullyBooked()
               this.Show()

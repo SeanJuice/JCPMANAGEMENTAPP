@@ -9,14 +9,15 @@ import { AlertController, ModalController, ToastController } from '@ionic/angula
   styleUrls: ['./editmodal.component.scss'],
 })
 export class EditmodalComponent implements OnInit {
-  @Input() DriverID: string;
+  @Input() tripID: string;
   localId:string
   constructor(public EditServe:ProfileService,private firestore: AngularFirestore,
     private alertcontroler:AlertController,
     private modalCtrl: ModalController,private toastController:ToastController) { }
 
   ngOnInit() {
-    this.firestore.doc(`Trips/${this.DriverID}`).snapshotChanges().subscribe(items=>{
+   
+    this.firestore.doc(`Trips/${this.tripID}`).snapshotChanges().subscribe(items=>{
       let item:any = items.payload.data()
       console.log(item)
      this.EditServe.form.setValue(item)
@@ -42,7 +43,8 @@ export class EditmodalComponent implements OnInit {
           text: 'Yes',
           handler: () => {
             let data= this.EditServe.form.value;
-            this.EditServe.update(data,this.DriverID)
+            console.log(data, " ", this.tripID)
+            this.EditServe.update(data,this.tripID)
             this.Successs()
             this.dismiss()
           }
