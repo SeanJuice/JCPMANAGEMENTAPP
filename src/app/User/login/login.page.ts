@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
                       this.checkVerified(res)
                       localStorage.setItem("UmuntuId",uid);
                       localStorage.setItem("Admin","isStudent");
-                      this.router.navigate(['home/newsfeed']) 
+                      this.router.navigate(['home/landing-page']) 
                     }
   
                   })

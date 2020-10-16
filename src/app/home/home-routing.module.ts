@@ -25,7 +25,15 @@ const routes: Routes = [
         path: 'scanner',
         loadChildren: () => import('./scanner/scanner.module').then( m => m.ScannerPageModule)
       },
+      {
+        path: 'landing-page',
+        loadChildren: () => import('./landing-page/landing-page.module').then( m => m.LandingPagePageModule)
+      },
     ]
+  },
+  {
+    path: 'landing-page',
+    loadChildren: () => import('./landing-page/landing-page.module').then( m => m.LandingPagePageModule)
   },
   
 

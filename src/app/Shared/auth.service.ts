@@ -13,8 +13,5 @@ export class AuthService {
     this.AfAuth.signOut()
     this.router.navigate([''])
   }
-  isloggedin()
-  {
-    return !!this.AfAuth.currentUser;
-  }
+ 
 }
