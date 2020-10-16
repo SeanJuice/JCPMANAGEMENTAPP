@@ -4,6 +4,7 @@ import { AlertController, ToastController } from '@ionic/angular';
 import * as moment from 'moment';
 import { BookTripService } from './book-trip.service';
 import { Subscription } from 'rxjs';
+import { AppComponent } from 'src/app/app.component';
 @Component({
   selector: 'app-book-trip',
   templateUrl: './book-trip.page.html',
@@ -21,7 +22,8 @@ export class BookTripPage implements OnInit {
     public toastController: ToastController,
      public BookServ:BookTripService,
      private firestore:AngularFirestore,
-     private ngZone: NgZone) { 
+     private ngZone: NgZone,
+     public logoutService: AppComponent) { 
 
        this.isBig=false; 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController, ModalController } from '@ionic/angular';
+import { AppComponent } from 'src/app/app.component';
 
 import { Studentt } from 'src/app/Shared/student.model';
 import { Trip } from 'src/app/Shared/Trip.model';
@@ -19,7 +20,8 @@ export class ProfilePage implements OnInit {
     private firestore: AngularFirestore,
        private ModalCtrl:ModalController,
        private alertcontroler:AlertController,
-       public EditServe:ProfileService
+       public EditServe:ProfileService,
+       public logoutService: AppComponent
 ) { 
 
 

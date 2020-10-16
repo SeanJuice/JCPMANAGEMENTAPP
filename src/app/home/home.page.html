@@ -12,20 +12,17 @@
   <ion-tabs >
    <ion-tab-bar slot="bottom" style="height: 70px;" class="new-background-color">
       <ion-segment scrollable value="home">
-         <ion-segment-button value="home" [routerLink]="['/home/newsfeed']">
+         <ion-segment-button value="newsfeed" [routerLink]="['/home/newsfeed']" *ngIf="this.isStudent">
            <ion-icon name="home"></ion-icon>
          </ion-segment-button>
-         <ion-segment-button value="heart"  [routerLink]="['/home/book-trip']">
+         <ion-segment-button value="heart"  [routerLink]="['/home/book-trip']" *ngIf="this.isStudent">
             <ion-icon name="car-sport-outline"></ion-icon>
          </ion-segment-button>
-         <ion-segment-button value="pin"  [routerLink]="['/home/profile']" >
+         <ion-segment-button value="pin"  [routerLink]="['/home/profile']" *ngIf="this.isStudent">
            <ion-icon name="person"></ion-icon>
          </ion-segment-button>
-         <ion-segment-button value="Scan in" hidden>
+         <ion-segment-button value="Scan(in or Out)" *ngIf="this.isAdmin">
           <ion-icon name="eye-outline"></ion-icon>
-         </ion-segment-button>
-         <ion-segment-button value="scan Out" hidden>
-          <ion-icon name="eye-off-outline" style="background-color: gold;"></ion-icon>
          </ion-segment-button>
 
        </ion-segment>
