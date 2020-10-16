@@ -8,12 +8,16 @@
 
     <ion-router-outlet ></ion-router-outlet>
 
-
+    <ion-icon name="home"></ion-icon>
   <ion-tabs >
    <ion-tab-bar slot="bottom" style="height: 70px;" class="new-background-color">
       <ion-segment scrollable value="home">
+      
+         <ion-segment-button value="home" [routerLink]="['/home/landing-page']" *ngIf="this.isStudent">
+          <ion-icon name="home"></ion-icon>
+         </ion-segment-button>
          <ion-segment-button value="newsfeed" [routerLink]="['/home/newsfeed']" *ngIf="this.isStudent">
-           <ion-icon name="home"></ion-icon>
+          <ion-icon name="newspaper-outline"></ion-icon>
          </ion-segment-button>
          <ion-segment-button value="heart"  [routerLink]="['/home/book-trip']" *ngIf="this.isStudent">
             <ion-icon name="car-sport-outline"></ion-icon>

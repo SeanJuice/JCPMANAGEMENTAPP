@@ -26,12 +26,20 @@ const routes: Routes = [
         loadChildren: () => import('./scanner/scanner.module').then( m => m.ScannerPageModule)
       },
       {
+
+        path: 'landing-page',
+        loadChildren: () => import('./landing-page/landing-page.module').then( m => m.LandingPagePageModule)
+      },
+    ]
+  },
+  {
         path: 'admin-feed',
         loadChildren: () => import('./admin-feed/admin-feed.module').then( m => m.AdminFeedPageModule)
       },
     ]
   },
  
+
 
   
 
