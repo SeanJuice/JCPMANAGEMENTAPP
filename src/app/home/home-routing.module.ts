@@ -25,8 +25,14 @@ const routes: Routes = [
         path: 'scanner',
         loadChildren: () => import('./scanner/scanner.module').then( m => m.ScannerPageModule)
       },
+      {
+        path: 'admin-feed',
+        loadChildren: () => import('./admin-feed/admin-feed.module').then( m => m.AdminFeedPageModule)
+      },
     ]
   },
+ 
+
   
 
 

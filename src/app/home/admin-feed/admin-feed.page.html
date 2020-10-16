@@ -1,0 +1,118 @@
+<ion-header  >
+  <ion-toolbar class="new-background-color">
+     <ion-title>Newsfeed</ion-title>
+     <ion-buttons slot="primary">
+      <ion-button color="warning" fill="outline" (click)="LogOut()" >
+        Log Out
+        <ion-icon slot="end" name="exit-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+    <ion-card style="background-color: #008c8e;">
+      <ion-card-header style="color: gold;" > WRITE A POST </ion-card-header>
+      <form [formGroup]="this.adminFeedService.form" (ngSubmit)="ConfirmationPost(this.SavedID)">
+        
+
+        <ion-card>
+
+          <ion-item-divider>
+            <ion-label color="warning" >Description</ion-label>
+          </ion-item-divider>
+
+          <ion-item>
+            <ion-textarea
+              class="checkout__address-form-input input"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              formControlName="Description">
+          </ion-textarea>
+        </ion-item>
+      </ion-card>
+  
+        <div class="container">
+          <ion-title>NEW POST</ion-title>
+  
+          <div *ngIf=" Showaddbutton == true" >
+            <ion-button type="submit" color="light" value="Add Post" [disabled]="!selectedFiles"> Add Post </ion-button> 
+          </div>
+  
+          <div *ngIf=" Showeditbutton == true">
+            <ion-button type="submit" color="light" value="Save Changes"> Save Changes </ion-button> 
+          </div>
+  
+          <div>
+            <ion-label for="file">
+              attach picture
+            </ion-label>
+          </div>
+
+          <div>
+            <ion-label class="btn btn-primary" style="background-color: #007B7C;" style="width: 90%;"  > <input type="file"
+              (change)="selectFile($event)" access=".png,.jpg,.mp4">
+            </ion-label>
+          </div> <br>
+
+          <div *ngIf="currentFileUpload" class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              aria-valuemin="0" aria-valuemax="100" 
+              [ngStyle]="{width:progress.percentage+'%'}">
+              {{progress.percentage}}%</div>
+          </div> <br>
+
+        </div>
+      </form>
+    </ion-card>
+
+      <div>
+          <ion-searchbar  color="dark" id="search" type="text" placeholder="Search..." name="search" class="search" [(ngModel)]="searchText" #searchbar> </ion-searchbar>
+      </div>
+
+
+  
+    <div *ngFor="let post of Posts | newsfilter: searchText">
+      <ion-card style="background-color: #008c8e;">
+        <ion-card-title style="font-size: x-large;" color="warning">
+          <img src="https://img.icons8.com/plasticine/100/000000/news.png" width="15%" height="15%"/>
+          Newsfeed Post 
+        </ion-card-title>
+      
+        
+        <ion-card-content>
+          <div style="width:170%">
+            <img  *ngIf="filetypeCheker(post.fileType) == false" src={{post.Url}} alt="Avatar" style="width:60%">
+            <video hide *ngIf="filetypeCheker(post.fileType)" width="60%" height="240" controls>
+              <source src={{post.Url}} type="video/mp4">
+            </video>
+          </div>
+        </ion-card-content>
+          
+        <ion-card-header>
+          <ion-card-subtitle>
+                {{post.Date | date}}
+          </ion-card-subtitle>
+        </ion-card-header>
+
+        
+        <ion-card-content style="color: gold;">
+            <div class="alert alert-warning" role="alert">
+                  {{post.Description}} 
+            </div>
+          </ion-card-content>
+
+           <div class="container" > 
+                <ion-button color="light" expand="round"  (click)="show(post.id)">Edit</ion-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;              
+
+              
+                <ion-button color="light" align="right" expand="round"  (click)="ConfirmationDelete(post.id,post.Url)">Delete</ion-button> 
+           </div>   <br>
+
+      </ion-card>
+    </div>
+
+  </ion-content>
+  
